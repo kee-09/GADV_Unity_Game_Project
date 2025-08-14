@@ -6,24 +6,24 @@ public class ItemPickup : MonoBehaviour
     private PlayerInventory playerInventory;
     private ItemValuable valuableData;
 
-    void Start()
-    {
-        valuableData = GetComponent<ItemValuable>(); // Get the item's data
-    }
-
     void Update()
     {
         // If player is in range and presses E
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (playerInventory != null)
+            if (playerInventory != null && valuableData != null)
             {
                 // Try to add the item to the player's inventory
                 bool pickedUp = playerInventory.AddItem(valuableData);
                 if (pickedUp)
                 {
+                    Debug.Log("Picked up: " + valuableData.itemName + " worth $" + valuableData.currentValue);
                     Destroy(gameObject); // Remove the item from the world
                 }
+            }
+            else
+            {
+                Debug.LogWarning("Missing inventory or item data!");
             }
         }
     }
@@ -34,7 +34,18 @@ public class ItemPickup : MonoBehaviour
         {
             playerInRange = true;
             playerInventory = other.GetComponent<PlayerInventory>();
-            Debug.Log("Press E to pick up " + valuableData.itemName);
+
+            // Grab the item's data when the player enters
+            valuableData = GetComponent<ItemValuable>();
+
+            if (valuableData != null)
+            {
+                Debug.Log("Press E to pick up " + valuableData.itemName + " worth $" + valuableData.currentValue);
+            }
+            else
+            {
+                Debug.LogWarning("ItemValuable component missing on this item!");
+            }
         }
     }
 

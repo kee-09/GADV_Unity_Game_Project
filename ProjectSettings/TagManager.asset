@@ -53,6 +53,9 @@ TagManager:
   - name: Backdrop Layer
     uniqueID: 3248620037
     locked: 0
+  - name: UI
+    uniqueID: 4016519799
+    locked: 0
   m_RenderingLayers:
   - Default
   - Top Layer

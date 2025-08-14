@@ -16,6 +16,12 @@ public class ItemValuable : MonoBehaviour
     [HideInInspector]
     public float currentValue;   // actual price assigned at spawn
 
+    // Automatically generate stats when the item spawns
+    void Start()
+    {
+        GenerateRandomStats();
+    }
+
     // Call this to randomly set currentWeight and currentValue
     public void GenerateRandomStats()
     {
