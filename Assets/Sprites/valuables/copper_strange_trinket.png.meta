@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      copper_strange_trinket_0: -6277278935378388419
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

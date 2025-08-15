@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      silver_strange_trinket_0: -3455914187919963433
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bronze_necklace_01_0: 576276974541340531
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

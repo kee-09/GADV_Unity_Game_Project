@@ -3,7 +3,7 @@ using TMPro;
 
 public class ExtractionPoint : MonoBehaviour
 {
-    public float quota = 100f;
+    public float quota = 50f;
     private float depositedValue = 0f;
     private bool playerInRange = false;
 

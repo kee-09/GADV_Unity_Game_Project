@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: af6429a53f242ce4294617cb42829953
+guid: 925281154da217e41b1c95f62d6dee19
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6376710977424025563
-    second: gold_strange_trinket_0
+      213: 8466938679379414625
+    second: vignette effect_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gold_strange_trinket_0
+      name: vignette effect_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 43
-        width: 430
-        height: 433
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bd761b449d0ae7850800000000000000
-      internalID: 6376710977424025563
+      spriteID: 16ecc6f7edb908570800000000000000
+      internalID: 8466938679379414625
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      gold_strange_trinket_0: 6376710977424025563
+      vignette effect_0: 8466938679379414625
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

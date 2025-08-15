@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      iron_strange_trinket_0: 7608150124820733348
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
