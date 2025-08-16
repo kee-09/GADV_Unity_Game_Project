@@ -3,104 +3,70 @@ using TMPro; // Allows use of TextMeshProUGUI for better-looking UI text
 
 public class PlayerInventory : MonoBehaviour
 {
-    // Maximum weight the player can carry
-    public float maxWeight = 30f;
+    public float maxWeight = 30f;                      // Max weight player can carry
+    public float currentWeight = 0f;                   // Current weight of carried items
+    public float currentValue = 0f;                    // Total value of carried items
 
-    // Current total weight of items the player is carrying
-    public float currentWeight = 0f;
+    public TMP_Text weightText;                        // UI text for weight display
+    public TMP_Text valueText;                         // UI text for value display
+    public TMP_Text livesText;                         // UI text for lives display
 
-    // Current total value of items the player is carrying
-    public float currentValue = 0f;
+    public int maxLives = 5;                           // Starting number of lives
+    private int currentLives;                          // Current number of lives
 
-    // UI text element that displays the current weight
-    public TMP_Text weightText;
-
-    // UI text element that displays the current value
-    public TMP_Text valueText;
-
-    //  UI text element that displays the player's remaining lives
-    public TMP_Text livesText;
-
-    //  Maximum number of lives the player starts with
-    public int maxLives = 5;
-
-    //  Current number of lives the player has
-    private int currentLives;
-
-    // Called when the game starts
     void Start()
     {
-        // Set current lives to the maximum at the beginning
-        currentLives = maxLives;
+        currentLives = maxLives;                       // Reset lives to full
+        UpdateUI();                                    // Refresh UI
 
-        // Update all UI elements to show starting values
-        UpdateUI();
+        Debug.Log("Player starting lives: " + currentLives); // Debug check
     }
 
-    // Try to add an item to the inventory
     public bool AddItem(ItemValuable item)
     {
-        // Check if adding this item would exceed the weight limit
-        if (currentWeight + item.currentWeight > maxWeight)
+        if (currentWeight + item.currentWeight > maxWeight) // Check weight limit
         {
             Debug.Log("Too heavy to pick up " + item.itemName);
-            return false; // Item not added
+            return false;
         }
 
-        // Add the item's weight and value to the player's totals
-        currentWeight += item.currentWeight;
-        currentValue += item.currentValue;
-
-        // Refresh the UI to show new totals
-        UpdateUI();
-        return true; // Item successfully added
+        currentWeight += item.currentWeight;           // Add item weight
+        currentValue += item.currentValue;             // Add item value
+        UpdateUI();                                    // Refresh UI
+        return true;
     }
 
-    //  Call this method when the player takes damage
     public void TakeDamage(int amount)
     {
-        // Reduce current lives by the damage amount
-        currentLives -= amount;
+        currentLives -= amount;                        // Subtract lives
+        currentLives = Mathf.Clamp(currentLives, 0, maxLives); // Clamp between 0 and max
+        UpdateUI();                                    // Update UI
 
-        // Clamp lives so it doesn't go below 0 or above max
-        currentLives = Mathf.Clamp(currentLives, 0, maxLives);
-
-        // Update the UI to show new lives count
-        UpdateUI();
-
-        // Check if the player has run out of lives
-        if (currentLives <= 0)
+        if (currentLives <= 0)                         // Only trigger if lives are gone
         {
             Debug.Log("Player is dead!");
-            // You can add game over or respawn logic here
+
+            GameManager gm = Object.FindFirstObjectByType<GameManager>(); // Find GameManager
+            if (gm != null)
+                gm.ShowLoseScreen();                   // Show lose screen
         }
     }
 
-    //  Call this method to heal the player and restore lives
     public void Heal(int amount)
     {
-        // Increase current lives by the healing amount
-        currentLives += amount;
-
-        // Clamp lives so it doesn't go above max
-        currentLives = Mathf.Clamp(currentLives, 0, maxLives);
-
-        // Update the UI to show new lives count
-        UpdateUI();
+        currentLives += amount;                        // Add lives
+        currentLives = Mathf.Clamp(currentLives, 0, maxLives); // Clamp to max
+        UpdateUI();                                    // Update lives UI
     }
 
-    // Update all UI elements (weight, value, lives)
     public void UpdateUI()
     {
-        // Update weight display
         if (weightText != null)
             weightText.text = $"Weight: {currentWeight:F1} / {maxWeight}";
 
-        // Update value display
         if (valueText != null)
             valueText.text = $"Value: ${currentValue:F0}";
 
-        //  Update lives display
         if (livesText != null)
             livesText.text = $"Lives: {currentLives}";
     }

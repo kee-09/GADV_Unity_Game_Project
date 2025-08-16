@@ -15,7 +15,7 @@ public class ItemSpawnManager : MonoBehaviour
         GetSpawnPositionsFromTilemap();
 
         // Step 2: Spawn items at random positions
-        SpawnValuablesRandomly(5); // You can change 5 to however many items you want to spawn
+        SpawnValuablesRandomly(8); // Number Of Items Spawnable
     }
 
     // This method finds all tiles in the spawn tilemap and saves their positions
