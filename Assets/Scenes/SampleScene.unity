@@ -2270,7 +2270,6 @@ GameObject:
   - component: {fileID: 785613979}
   - component: {fileID: 785613978}
   - component: {fileID: 785613980}
-  - component: {fileID: 785613981}
   m_Layer: 0
   m_Name: Walls (Top)
   m_TagString: Untagged
@@ -11577,22 +11576,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!114 &785613981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785613976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1 &822257954
 GameObject:
   m_ObjectHideFlags: 0
@@ -11708,7 +11691,6 @@ GameObject:
   - component: {fileID: 972845796}
   - component: {fileID: 972845798}
   - component: {fileID: 972845797}
-  - component: {fileID: 972845799}
   m_Layer: 0
   m_Name: ItemSpawnLocation
   m_TagString: Untagged
@@ -12045,22 +12027,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &972845799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972845795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1 &1054971380
 GameObject:
   m_ObjectHideFlags: 0
@@ -13112,8 +13078,6 @@ GameObject:
   - component: {fileID: 1688165762}
   - component: {fileID: 1688165764}
   - component: {fileID: 1688165763}
-  - component: {fileID: 1688165767}
-  - component: {fileID: 1688165766}
   - component: {fileID: 1688165765}
   m_Layer: 6
   m_Name: GroundTileMap
@@ -31999,39 +31963,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!114 &1688165766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688165761}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 709c8d6349be44c68dff3d220992400c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AffectedAgents: ffffffff
-  m_TileModifiers:
-  - tile: {fileID: 11400000, guid: c769a288ca7d9b94dbea316c60c6d25b, type: 2}
-    overrideArea: 1
-    area: 0
---- !u!114 &1688165767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688165761}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1 &1728581556
 GameObject:
   m_ObjectHideFlags: 0
@@ -32097,7 +32028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1919156807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32640,7 +32571,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7417348719392443988, guid: 01583653743798d4fb0d81f5b3297e2a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -32657,6 +32589,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 396467605}
+    - target: {fileID: 4408249742094579657, guid: 14a5a83a222c95c4baa15e95b5787315, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6759948217180466070, guid: 14a5a83a222c95c4baa15e95b5787315, type: 3}
       propertyPath: m_Name
       value: Monster
@@ -32701,7 +32637,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 6347396833776289731, guid: 14a5a83a222c95c4baa15e95b5787315, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

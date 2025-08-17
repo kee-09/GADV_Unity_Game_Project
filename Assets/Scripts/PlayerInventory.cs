@@ -1,73 +1,104 @@
-using UnityEngine;
-using TMPro; // Allows use of TextMeshProUGUI for better-looking UI text
+using UnityEngine; // Gives access to Unity's core features like MonoBehaviour and GameObjects
+using TMPro; // Allows use of TextMeshProUGUI for better-looking UI text: https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/index.html
 
 public class PlayerInventory : MonoBehaviour
 {
-    public float maxWeight = 30f;                      // Max weight player can carry
-    public float currentWeight = 0f;                   // Current weight of carried items
-    public float currentValue = 0f;                    // Total value of carried items
+    // Maximum weight the player can carry before being overloaded
+    public float maxWeight = 30f;
 
-    public TMP_Text weightText;                        // UI text for weight display
-    public TMP_Text valueText;                         // UI text for value display
-    public TMP_Text livesText;                         // UI text for lives display
+    // Tracks how much weight the player is currently carrying
+    public float currentWeight = 0f;
 
-    public int maxLives = 5;                           // Starting number of lives
-    private int currentLives;                          // Current number of lives
+    // Tracks the total value of all items the player has collected
+    public float currentValue = 0f;
+
+    // UI elements to show weight, value, and lives on screen
+    public TMP_Text weightText;
+    public TMP_Text valueText;
+    public TMP_Text livesText;
+
+    // Maximum number of lives the player starts with
+    public int maxLives = 5;
+
+    // Current number of lives the player has left
+    private int currentLives;
 
     void Start()
     {
-        currentLives = maxLives;                       // Reset lives to full
-        UpdateUI();                                    // Refresh UI
+        // When the game starts, give the player full lives
+        currentLives = maxLives;
 
-        Debug.Log("Player starting lives: " + currentLives); // Debug check
+        // Update the UI so the player sees the correct starting values
+        UpdateUI();
+
+        // Print the starting lives to the console for debugging
+        Debug.Log("Player starting lives: " + currentLives);
     }
 
+    // Tries to add an item to the player's inventory
     public bool AddItem(ItemValuable item)
     {
-        if (currentWeight + item.currentWeight > maxWeight) // Check weight limit
+        // If adding the item would exceed the weight limit, reject it
+        if (currentWeight + item.currentWeight > maxWeight)
         {
-            Debug.Log("Too heavy to pick up " + item.itemName);
-            return false;
+            Debug.Log("Too heavy to pick up " + item.itemName); // Show message in console
+            return false; // Item not added
         }
 
-        currentWeight += item.currentWeight;           // Add item weight
-        currentValue += item.currentValue;             // Add item value
-        UpdateUI();                                    // Refresh UI
-        return true;
+        // Add the item's weight and value to the player's totals
+        currentWeight += item.currentWeight;
+        currentValue += item.currentValue;
+
+        // Update the UI to reflect the new totals
+        UpdateUI();
+
+        return true; // Item successfully added
     }
 
+    // Reduces the player's lives when they take damage
     public void TakeDamage(int amount)
     {
-        currentLives -= amount;                        // Subtract lives
-        currentLives = Mathf.Clamp(currentLives, 0, maxLives); // Clamp between 0 and max
-        UpdateUI();                                    // Update UI
+        currentLives -= amount; // Subtract damage from current lives
 
-        if (currentLives <= 0)                         // Only trigger if lives are gone
+        // Clamp lives so they never go below 0 or above maxLives
+        currentLives = Mathf.Clamp(currentLives, 0, maxLives); // https://docs.unity3d.com/ScriptReference/Mathf.Clamp.html
+
+        UpdateUI(); // Refresh the lives display
+
+        // If lives reach 0, trigger the lose condition
+        if (currentLives <= 0)
         {
             Debug.Log("Player is dead!");
 
-            GameManager gm = Object.FindFirstObjectByType<GameManager>(); // Find GameManager
+            // Find the GameManager in the scene to handle game over
+            GameManager gm = Object.FindFirstObjectByType<GameManager>(); // https://docs.unity3d.com/ScriptReference/Object.FindFirstObjectByType.html
+
             if (gm != null)
-                gm.ShowLoseScreen();                   // Show lose screen
+                gm.ShowLoseScreen(); // Show the lose screen
         }
     }
 
+    // Heals the player by adding lives
     public void Heal(int amount)
     {
-        currentLives += amount;                        // Add lives
-        currentLives = Mathf.Clamp(currentLives, 0, maxLives); // Clamp to max
-        UpdateUI();                                    // Update lives UI
+        currentLives += amount; // Add healing amount to current lives
+
+        // Clamp lives so they don’t go above maxLives
+        currentLives = Mathf.Clamp(currentLives, 0, maxLives);
+
+        UpdateUI(); // Refresh the lives display
     }
 
+    // Updates all UI elements to show current inventory and lives
     public void UpdateUI()
     {
         if (weightText != null)
-            weightText.text = $"Weight: {currentWeight:F1} / {maxWeight}";
+            weightText.text = $"Weight: {currentWeight:F1} / {maxWeight}"; // Show weight with 1 decimal place
 
         if (valueText != null)
-            valueText.text = $"Value: ${currentValue:F0}";
+            valueText.text = $"Value: ${currentValue:F0}"; // Show value with no decimals
 
         if (livesText != null)
-            livesText.text = $"Lives: {currentLives}";
+            livesText.text = $"Lives: {currentLives}"; // Show current lives
     }
 }

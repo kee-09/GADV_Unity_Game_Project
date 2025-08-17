@@ -220,5 +220,5 @@ MonoBehaviour:
   roamSpeed: 5
   chaseSpeed: 4
   roamDuration: 3
-  detectionRadius: 6
-  player: {fileID: 0}
+  detectionRadius: 8
+  player: {fileID: 7734788774965315498, guid: 01583653743798d4fb0d81f5b3297e2a, type: 3}
